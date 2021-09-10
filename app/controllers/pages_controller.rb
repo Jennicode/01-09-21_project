@@ -10,4 +10,13 @@ class PagesController < ApplicationController
     project.fecha_final = params[:ends_on]
     project.save
   end
+
+  def dashboard
+    # @projects = Projectmodel.all 
+    if params[:estado].present?
+      @projects = Projectmodel.where('estado = ?', params[:estado])
+    else 
+      @projects = Projectmodel.all
+    end
+  end
 end
